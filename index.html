@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bristol Builders — Your Game Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ea; --card:#ffffff; --ink:#15181b; --ink-2:#3a3f44; --mute:#6d7277;
+  --line:rgba(21,24,27,.12); --forest:#1f3a2e; --amber:#c9762b; --amber-2:#e08a3a; --soft:#fff7ec;
+  --display:'Archivo',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#121416; --card:#1b1e21; --ink:#f1efe9; --ink-2:#cfd2d4; --mute:#9aa0a3; --line:rgba(255,255,255,.12); --soft:rgba(224,138,58,.12)}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:17px/1.6 var(--body);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);font-stretch:110%;letter-spacing:-.02em;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber-2);outline-offset:3px}
+
+.top{background:var(--forest);color:#f4f1ea;padding:48px 0 40px}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#e9b98a}
+.top h1{font-size:clamp(34px,8vw,48px);font-weight:850;margin:14px 0 14px}
+.top p{color:#d3ddd6;font-size:18px}
+.how{display:grid;gap:10px;margin-top:26px}
+.how div{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;font-size:16px;color:#eef2ef}
+.how b{font:800 18px/1.3 var(--display);color:var(--amber-2);min-width:18px}
+
+.progress{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0}
+.progress .wrap{display:flex;align-items:center;gap:14px;font-weight:600;font-size:15px}
+.bar{flex:1;height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .3s}
+
+section{padding:36px 0 8px}
+.label{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}
+.card.helper{border:2px solid var(--amber)}
+.card summary{list-style:none;cursor:pointer;padding:20px 20px;display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center}
+.card summary::-webkit-details-marker{display:none}
+.num{width:36px;height:36px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font:800 16px/1 var(--display)}
+.card.done .num{background:var(--amber)}
+.card.done .num span{display:none}
+.card.done .num::after{content:"✓";font-size:18px}
+.card h3{font-size:20px;font-weight:780}
+.meta{font-size:14px;color:var(--mute);margin-top:3px}
+.chev{font-size:22px;color:var(--mute);transition:transform .2s}
+.card[open] .chev{transform:rotate(90deg)}
+.body{padding:0 20px 22px 70px}
+.why{color:var(--ink-2);margin-bottom:16px}
+.need{font-size:15px;background:var(--soft);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.need b{font-weight:600}
+ol.steps{padding-left:22px;display:grid;gap:10px;margin-bottom:18px}
+ol.steps li{padding-left:4px}
+ol.steps li b{font-weight:600}
+.tip{font-size:15px;color:var(--mute);border-left:3px solid var(--line);padding-left:12px;margin:14px 0}
+
+.copybox{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:6px 0 16px;white-space:pre-wrap;font-size:15.5px;line-height:1.55;max-height:260px;overflow:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px/1 var(--body);padding:16px 22px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;min-height:52px}
+.btn-amber{background:var(--amber);color:#fff;width:100%}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.copied{background:var(--forest);color:#fff}
+.donebtn{display:flex;align-items:center;gap:12px;margin-top:8px;font-weight:600;cursor:pointer;padding:14px 16px;border-radius:12px;border:1.5px dashed var(--line);width:100%;background:transparent;color:var(--ink);font-size:16px}
+.donebtn input{width:22px;height:22px;accent-color:var(--amber)}
+.card.done .donebtn{border-style:solid;border-color:var(--amber)}
+
+.rules{display:grid;gap:10px}
+.rules div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.rules b{display:block;font:760 17px/1.3 var(--display);margin-bottom:4px}
+.rules p{color:var(--ink-2);font-size:15.5px}
+footer{padding:40px 0 60px;color:var(--mute);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <div class="eyebrow">Bristol Builders LLC</div>
+    <h1>More calls from Google, one short job at a time.</h1>
+    <p>James put this together for you. Everything you need is on this page, and nothing else has to be installed or bought.</p>
+    <div class="how">
+      <div><b>1</b><span>Do one job a night. Most take about 10 minutes.</span></div>
+      <div><b>2</b><span>If a screen doesn't match the steps, send a screenshot to your AI helper (job 0). It'll tell you where to tap.</span></div>
+      <div><b>3</b><span>Tap "Done" when you finish one. This page saves your progress on this phone.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="progress"><div class="wrap"><span id="pText">0 of 8 done</span><div class="bar"><i id="pBar"></i></div></div></div>
+
+<div class="wrap">
+
+<section>
+  <div class="label">Start here</div>
+
+  <details class="card helper" data-job="0" open>
+    <summary><div class="num"><span>0</span></div><div><h3>Set up your AI helper</h3><div class="meta">About 2 minutes · do this once</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Your AI helper is the AI app on your phone (ChatGPT, Claude, Gemini, any of them). The message below tells it about your business and this plan, so it can walk you through every job one step at a time.</p>
+      <ol class="steps">
+        <li>Tap <b>Copy the helper message</b> below.</li>
+        <li>Open your AI app and start a <b>new chat</b>.</li>
+        <li>Press and hold in the message box, tap <b>Paste</b>, then send it.</li>
+        <li>It will ask which job you want to do. From then on, just answer it.</li>
+      </ol>
+      <button class="btn btn-amber" data-copy="prompt">Copy the helper message</button>
+      <p class="tip">Use the same chat every night so it remembers where you left off. If you lose the chat, paste the message into a new one and tell it which jobs are done.</p>
+      <details style="margin-top:6px"><summary style="cursor:pointer;color:var(--mute);font-size:15px;padding:6px 0">See the message</summary>
+<div class="copybox" id="prompt">I run Bristol Builders LLC, a general contracting company based in Bristol, Vermont. I serve Addison County: decks and porches, siding, bathroom renovations, rot repair, window and door installation, painting, and sheetrock repair. My website is bristolbuildersvt.com (built on ZenBusiness). I have a Google Business Profile and a Facebook page.
+
+A friend made me a plan to get more customers from Google. I want you to walk me through it. I'm good at my trade but I don't do much on computers, and I'll usually be doing this on my phone at the end of a long workday.
+
+HOW TO HELP ME
+- Give me one step at a time. Wait for me to say "done" or ask a question before the next step.
+- Keep each message short. Plain words. If you need a technical word, explain it in a few words the first time.
+- Talk to me like a capable adult, not a kid. Don't over-praise.
+- If I'm confused or my screen looks different, ask me for a screenshot. Don't guess what's on my screen.
+- Never ask for my passwords, codes, or card numbers. If a screen asks for those, I type them myself.
+- Don't have me pay for anything or sign up for anything new. Everything in this plan is free.
+- Only write things that are true about my business. Ask me instead of making things up. Never write fake reviews.
+- Each session should take about 10–15 minutes. When we finish a job, tell me it's a good stopping point.
+
+THE PLAN (jobs in order)
+1. Look at the new website preview my friend made, and note anything that isn't right about me.
+2. Make sure I can edit my Google Business Profile (search "Bristol Builders" on Google while signed in to my business Google account, and look for the "Edit profile" option).
+3. Change my primary Google business category from "Remodeler" to "General contractor."
+4. Check that my map pin is on my real location and set my service area to the towns I work in.
+5. Paste in my new Google business description (text below). Help me edit anything that isn't accurate first.
+6. Text 3 past customers asking for a Google review, using my profile's review link (text below).
+7. Add 10 photos of my past jobs to my Google profile.
+8. Update the words on my website in the ZenBusiness editor, one section per night (text below).
+LATER: In February, plan one spring ad in the Addison Independent. Optional: look into Efficiency Vermont's contractor network.
+
+Start by showing me the job list and asking which job I'm on. Before job 8, ask me these questions one at a time and use my answers in the website text:
+- What phone number and email should customers see? (They must match my Google profile exactly.)
+- Am I insured? What should I say about it?
+- What's the smallest job I'll take?
+- How far will I travel?
+- How fast do I usually reply to people?
+- How soon can I usually start a job?
+- Do I have openings for interior work this winter?
+- How long have I been building, and 2–3 sentences about myself and my work.
+
+GOOGLE DESCRIPTION (job 5)
+Bristol Builders LLC is a general contractor based in Bristol, Vermont, serving homeowners across Addison County. We build and repair decks and porches, install and repair siding, renovate bathrooms, fix rot in sills, trim and framing, install windows and doors, and handle interior and exterior painting and sheetrock repair. When you call, you talk to the person who will be on your job. Every project starts with a site visit and a written estimate, so you know the scope and price before work begins. We work in Bristol, Middlebury, Vergennes, Monkton, New Haven, Lincoln, Starksboro and nearby towns.
+
+REVIEW TEXT (job 6)
+Hi [name], it's Dakota from Bristol Builders. Thanks again for having me out. If you were happy with the work, a quick Google review would help a small local business more than you'd think: [review link]. Thanks!
+
+WEBSITE WORDS (job 8)
+Headline: The contractor Addison County calls back.
+Under the headline: Decks, siding, bathrooms, and the repairs that keep a Vermont house sound. One crew, one point of contact, and a written estimate before any work starts.
+Main button: Get a free estimate
+Services:
+- Decks & porches: New builds, rebuilds, and stair and railing fixes, framed to take a frost heave.
+- Siding: Install, replace, and repair, with the flashing and wrap done right underneath.
+- Bathroom renovations: From a vanity swap to a full gut, with tile, fixtures, and finish work.
+- Rot repair: Find it, cut it out, and rebuild the sills, trim, and framing before it spreads.
+- Windows & doors: Flashed, sealed, and trimmed so they close true and stop the draft.
+- Painting & drywall: Patches, full rooms, and exteriors, prepped properly so the paint holds.
+How it works: 1) Send the details or a photo. 2) Site visit. 3) Written estimate. 4) Build and walkthrough.
+Also: add a contact form if the site doesn't have one, and put the same phone and email on every page.
+Remove the old line that says I'm "a small business trying to get a start."</div>
+      </details>
+      <label class="donebtn"><input type="checkbox" data-done="0"> Done: my helper is set up</label>
+    </div>
+  </details>
+</section>
+
+<section>
+  <div class="label">The jobs</div>
+
+  <details class="card" data-job="1">
+    <summary><div class="num"><span>1</span></div><div><h3>Look at your new website preview</h3><div class="meta">About 5 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">This is a sample of what your website could look like. It isn't live, and nothing on your real site has changed.</p>
+      <ol class="steps">
+        <li>Tap <b>Open the preview</b>.</li>
+        <li>Scroll all the way down. Try the slider in the photo section and the estimate form.</li>
+        <li>Anything that isn't how you work? Tell your AI helper. It'll get fixed before anything goes on your real site.</li>
+      </ol>
+      <a class="btn btn-amber" href="preview.html">Open the preview</a>
+      <p class="tip">Words in [brackets] are blanks only you can fill in. Your helper will ask you about them later.</p>
+      <label class="donebtn"><input type="checkbox" data-done="1"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="2">
+    <summary><div class="num"><span>2</span></div><div><h3>Make sure you can edit your Google listing</h3><div class="meta">About 5 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Most local customers find a contractor on Google Maps before they ever see a website. Your listing is there now, but it needs a few fixes.</p>
+      <div class="need"><b>You'll need:</b> the Google (Gmail) account you used when you set up the business.</div>
+      <ol class="steps">
+        <li>Open the <b>Google</b> app or Chrome, signed in to that account.</li>
+        <li>Search <b>Bristol Builders</b>.</li>
+        <li>Look for your business with buttons like <b>Edit profile</b> or <b>Your business</b> above the results.</li>
+        <li>See it? You're set. Tap Done.</li>
+      </ol>
+      <p class="tip">Don't see it? You may be signed in with a different account, or the listing may need to be claimed. Screenshot what you see and send it to your helper.</p>
+      <label class="donebtn"><input type="checkbox" data-done="2"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="3">
+    <summary><div class="num"><span>3</span></div><div><h3>Change your category to "General contractor"</h3><div class="meta">About 5 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Right now Google files you under "Remodeler," so you don't come up when people search "general contractor near me." This is the biggest single fix.</p>
+      <ol class="steps">
+        <li>From your listing, tap <b>Edit profile</b>.</li>
+        <li>Find <b>Business category</b>.</li>
+        <li>Change the main category to <b>General contractor</b>.</li>
+        <li>Under additional categories, add any that fit your work, like <b>Deck builder</b> or <b>Siding contractor</b>.</li>
+        <li>Tap <b>Save</b>.</li>
+      </ol>
+      <p class="tip">Google sometimes takes a few days to review changes. That's normal.</p>
+      <label class="donebtn"><input type="checkbox" data-done="3"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="4">
+    <summary><div class="num"><span>4</span></div><div><h3>Check your map pin and towns</h3><div class="meta">About 10 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Your pin may not be in Bristol. Google shows you to people near your pin and in the towns you list.</p>
+      <ol class="steps">
+        <li>In <b>Edit profile</b>, open <b>Location</b> (it may be called <b>Business location</b> or <b>Address</b>).</li>
+        <li>Check that the pin is on your real spot. If not, drag it there and save.</li>
+        <li>Find <b>Service area</b> and add the towns you actually work in: Bristol, Middlebury, Vergennes, Monkton, New Haven, Lincoln, Starksboro, and others.</li>
+        <li>If you work from home and don't want your address public, your helper can show you how to hide it and show only the service area.</li>
+      </ol>
+      <label class="donebtn"><input type="checkbox" data-done="4"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="5">
+    <summary><div class="num"><span>5</span></div><div><h3>Add your new business description</h3><div class="meta">About 5 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">This is the paragraph people read on your Google listing. It's written and ready to go. Read it first and change anything that isn't how you work.</p>
+      <div class="copybox" id="desc">Bristol Builders LLC is a general contractor based in Bristol, Vermont, serving homeowners across Addison County. We build and repair decks and porches, install and repair siding, renovate bathrooms, fix rot in sills, trim and framing, install windows and doors, and handle interior and exterior painting and sheetrock repair. When you call, you talk to the person who will be on your job. Every project starts with a site visit and a written estimate, so you know the scope and price before work begins. We work in Bristol, Middlebury, Vergennes, Monkton, New Haven, Lincoln, Starksboro and nearby towns.</div>
+      <button class="btn btn-line" data-copy="desc" style="margin-bottom:16px">Copy the description</button>
+      <ol class="steps">
+        <li>In <b>Edit profile</b>, find <b>Description</b>.</li>
+        <li>Delete the old text, including the "trying to get a start" line.</li>
+        <li>Press and hold, tap <b>Paste</b>, then <b>Save</b>.</li>
+      </ol>
+      <label class="donebtn"><input type="checkbox" data-done="5"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="6">
+    <summary><div class="num"><span>6</span></div><div><h3>Ask 3 past customers for a review</h3><div class="meta">About 10 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Reviews decide who gets the call. Your listing has 0. The nearest competitors have 8 and 24. Three reviews from happy customers puts you on the board.</p>
+      <ol class="steps">
+        <li>On your listing, tap <b>Ask for reviews</b> (or <b>Get more reviews</b>). Copy the link it gives you.</li>
+        <li>Pick 3 past customers you know were happy.</li>
+        <li>Copy the text below, paste it into a text message, and put in their name and your link.</li>
+      </ol>
+      <div class="copybox" id="rev">Hi [name], it's Dakota from Bristol Builders. Thanks again for having me out. If you were happy with the work, a quick Google review would help a small local business more than you'd think: [review link]. Thanks!</div>
+      <button class="btn btn-line" data-copy="rev">Copy the text</button>
+      <p class="tip">From now on, send this after every finished job, within a couple of days. It's the most valuable 30 seconds in this whole plan. Reply to every review you get, even just "Thanks, it was a good job to work on."</p>
+      <label class="donebtn"><input type="checkbox" data-done="6"> Done: sent to 3 people</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="7">
+    <summary><div class="num"><span>7</span></div><div><h3>Add 10 job photos to Google</h3><div class="meta">About 10 minutes</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">People hire with their eyes. Photos of your real work beat anything written.</p>
+      <ol class="steps">
+        <li>On your listing, tap <b>Add photo</b> (or <b>Photos</b> in Edit profile).</li>
+        <li>Pick 10 of your best job photos from your phone.</li>
+        <li>Upload. That's it.</li>
+      </ol>
+      <div class="need"><b>On every job from now on, take 3 photos:</b><br>1. Before, wide, from one spot<br>2. After, wide, from the same spot<br>3. A close-up of the detail work<br>Daylight, phone held sideways.</div>
+      <label class="donebtn"><input type="checkbox" data-done="7"> Done</label>
+    </div>
+  </details>
+
+  <details class="card" data-job="8">
+    <summary><div class="num"><span>8</span></div><div><h3>Update the words on your website</h3><div class="meta">2–3 nights, about 15 minutes each</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">This is the biggest job, so it's split up. Your AI helper already has all the new words. It'll ask you a few questions first, then walk you through the ZenBusiness editor one section at a time.</p>
+      <ol class="steps">
+        <li>Tell your helper: <b>"I'm ready for job 8."</b></li>
+        <li>Answer its questions about your business.</li>
+        <li>Log in to ZenBusiness the way you normally do. Your helper will guide you from there. Send it a screenshot whenever you're unsure.</li>
+        <li>Do one section per night: headline first, then services, then the rest.</li>
+      </ol>
+      <p class="tip">Changes don't go live until you hit Publish in ZenBusiness, so you can't break anything by looking around.</p>
+      <label class="donebtn"><input type="checkbox" data-done="8"> Done: website updated</label>
+    </div>
+  </details>
+</section>
+
+<section>
+  <div class="label">Later</div>
+  <div class="rules">
+    <div><b>February: one spring newspaper ad</b><p>Plan one ad in the Addison Independent for late February or March, when people start planning spring projects. Call the paper for prices and deadlines. Your helper can write the ad with you. It's in the preview under "Playbook."</p></div>
+    <div><b>Optional: Efficiency Vermont</b><p>Efficiency Vermont keeps a network of contractors it refers customers to for energy-related work like windows, doors, and fixing drafts. Ask your helper to look up how to apply.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="label">Three rules</div>
+  <div class="rules">
+    <div><b>Only say what's true.</b><p>If anything in the ready-made text isn't how you work, change it or skip it.</p></div>
+    <div><b>Your passwords stay with you.</b><p>Never give your AI helper a password or code. Type those in yourself.</p></div>
+    <div><b>None of this costs money.</b><p>If anything asks you to pay or upgrade, stop and ask your helper first.</p></div>
+  </div>
+</section>
+
+</div>
+
+<footer>Prepared for Bristol Builders LLC · <a href="preview.html">Website preview</a></footer>
+
+<script>
+(function(){
+  var KEY='bb-guide-done', TOTAL=8, state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}') }catch(e){}
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)) }catch(e){} }
+  function paint(){
+    var n=0;
+    document.querySelectorAll('[data-done]').forEach(function(cb){
+      var id=cb.getAttribute('data-done'), on=!!state[id];
+      cb.checked=on;
+      cb.closest('.card').classList.toggle('done',on);
+      if(on && id!=='0') n++;
+    });
+    document.getElementById('pText').textContent=n+' of '+TOTAL+' done';
+    document.getElementById('pBar').style.width=(n/TOTAL*100)+'%';
+  }
+  document.querySelectorAll('[data-done]').forEach(function(cb){
+    cb.addEventListener('change',function(){
+      var id=cb.getAttribute('data-done'); state[id]=cb.checked; save(); paint();
+      if(cb.checked){
+        var card=cb.closest('.card'); card.open=false;
+        var next=document.querySelector('.card[data-job="'+(+id+1)+'"]');
+        if(next){ next.open=true; next.scrollIntoView({behavior:'smooth',block:'start'}); }
+      }
+    });
+  });
+  paint();
+
+  function fallback(text){
+    var t=document.createElement('textarea'); t.value=text; t.style.position='fixed'; t.style.opacity='0';
+    document.body.appendChild(t); t.select();
+    try{ document.execCommand('copy') }catch(e){}
+    document.body.removeChild(t);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var text=document.getElementById(b.getAttribute('data-copy')).textContent;
+      function ok(){ b.textContent='Copied ✓'; b.classList.add('copied'); setTimeout(function(){ b.textContent=label; b.classList.remove('copied') },2200) }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(ok,function(){ fallback(text); ok() });
+      } else { fallback(text); ok() }
+    });
+  });
+})();
+</script>
+</body>
+</html>

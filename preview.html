@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bristol Builders — New Website Preview</title>
+<meta name="description" content="General contractor in Bristol, VT serving Addison County. Decks, siding, bathroom renovations, rot repair, windows and doors. Written estimates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Bristol Builders LLC",
+  "url": "https://bristolbuildersvt.com",
+  "areaServed": ["Bristol VT","Middlebury VT","Vergennes VT","Monkton VT","New Haven VT","Lincoln VT","Starksboro VT","Addison County VT"],
+  "makesOffer": ["Deck building","Siding","Bathroom renovation","Rot repair","Window and door installation","Painting","Drywall repair"]
+}
+</script>
+<style>
+:root{
+  --paper:#f4f1ea; --paper-2:#ebe6db; --ink:#15181b; --ink-2:#3a3f44; --mute:#6d7277;
+  --forest:#1f3a2e; --forest-2:#2b4f3e; --amber:#c9762b; --amber-2:#e08a3a;
+  --line:rgba(21,24,27,.12); --line-d:rgba(244,241,234,.14);
+  --display:'Archivo',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --r:14px; --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:112%;letter-spacing:-.02em;line-height:1.05}
+.eyebrow{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--body);padding:16px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .2s,color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-amber{background:var(--amber);color:#fff}
+.btn-amber:hover{background:var(--amber-2)}
+.btn-ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line-d)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--paper)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:3px solid var(--amber-2);outline-offset:3px}
+
+/* CONFIRM tokens + strategy notes */
+.cf{background:rgba(201,118,43,.0);border-radius:4px;transition:background .2s,box-shadow .2s}
+body.notes .cf{background:rgba(224,138,58,.22);box-shadow:0 0 0 2px rgba(224,138,58,.55)}
+.note{display:none;margin:18px 0 0;padding:14px 16px;border-left:3px solid var(--amber);background:#fff7ec;color:#4a3a28;font-size:13.5px;line-height:1.55;border-radius:0 10px 10px 0;max-width:640px}
+.note b{color:#8a4c14;font-weight:600}
+.dark .note{background:rgba(224,138,58,.1);color:#f1dcc4}
+.dark .note b{color:var(--amber-2)}
+body.notes .note{display:block}
+
+/* Demo control */
+.demo{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:300;display:flex;gap:4px;background:rgba(21,24,27,.92);backdrop-filter:blur(10px);padding:5px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.demo button,.demo a{font:600 12.5px/1 var(--body);color:#cfd2d4;background:transparent;border:0;padding:10px 14px;border-radius:999px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.demo .on{background:var(--paper);color:var(--ink)}
+.demo .tag{color:var(--amber-2);padding-right:6px;cursor:default}
+
+/* Top bar + nav */
+.topbar{background:var(--forest);color:#d9e2dc;font-size:13.5px;text-align:center;padding:10px 16px}
+.topbar a{color:#fff;font-weight:600}
+header{position:sticky;top:0;z-index:200;background:rgba(244,241,234,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:34px;height:34px}
+.brand-name{font:800 19px/1 var(--display);font-stretch:118%;letter-spacing:-.01em}
+.brand-name small{display:block;font:500 11px/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+.nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--ink-2)}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-phone{font-weight:600;font-size:14.5px;text-decoration:none}
+
+/* Hero */
+.hero{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:88px 24px 96px}
+.hero h1{font-size:clamp(42px,6vw,76px);font-weight:850;margin:18px 0 22px}
+.hero h1 span{color:var(--amber-2)}
+.hero p.lede{font-size:19px;color:#c3c7c9;max-width:520px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 36px}
+.trust{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#aeb3b6}
+.trust span{display:flex;align-items:center;gap:8px}
+.trust svg{width:16px;height:16px;color:var(--amber-2)}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:12px}
+.collage .ph:first-child{grid-row:span 2}
+
+/* Photo placeholders */
+.ph{position:relative;border-radius:var(--r);overflow:hidden;min-height:160px;background:
+  linear-gradient(160deg,rgba(255,255,255,.06),rgba(0,0,0,.25)),
+  repeating-linear-gradient(115deg,#3b4a40 0 14px,#34433a 14px 28px)}
+.ph.t2{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.25)),repeating-linear-gradient(90deg,#6b5a46 0 10px,#625240 10px 20px)}
+.ph.t3{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.2)),repeating-linear-gradient(0deg,#56626b 0 9px,#4e5a63 9px 18px)}
+.ph.t4{background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(0,0,0,.15)),repeating-linear-gradient(45deg,#8d8678 0 12px,#857e70 12px 24px)}
+.ph figcaption{position:absolute;left:12px;bottom:12px;right:12px;font:600 11.5px/1.35 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);padding:7px 10px;border-radius:8px;width:fit-content}
+
+/* Towns strip */
+.towns{border-bottom:1px solid var(--line);background:var(--paper-2)}
+.towns .wrap{display:flex;gap:10px 26px;flex-wrap:wrap;align-items:center;padding:20px 24px;font-size:14px;color:var(--ink-2)}
+.towns b{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+
+/* Sections */
+section.s{padding:104px 0}
+.s-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
+.s-head h2{font-size:clamp(34px,4.4vw,54px);font-weight:820;max-width:640px;margin-top:14px}
+.s-head p{max-width:400px;color:var(--ink-2);font-size:16.5px}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .s-head p{color:#b8bdc0}
+.forest{background:var(--forest);color:var(--paper)}
+
+/* Services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.svc{padding:34px 30px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:14px;background:var(--paper);transition:background .2s}
+.svc:hover{background:#fff}
+.svc svg{width:30px;height:30px;color:var(--forest-2)}
+.svc h3{font-size:24px;font-weight:780}
+.svc p{color:var(--ink-2);font-size:15px}
+.svc ul{list-style:none;font-size:14px;color:var(--mute);display:grid;gap:4px}
+.svc ul li::before{content:"— ";color:var(--amber)}
+.svc a.go{margin-top:auto;padding-top:8px;font-weight:600;font-size:14.5px;text-decoration:none;color:var(--forest-2);display:inline-flex;gap:8px}
+.svc a.go:hover{color:var(--amber)}
+
+/* Season band */
+.season{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:22px;overflow:hidden}
+.season > div{padding:52px 48px}
+.season .now{background:var(--forest)}
+.season .next{background:var(--forest-2)}
+.season h3{font-size:34px;font-weight:800;margin:14px 0 14px;color:var(--paper)}
+.season p{color:#cbd6cf;margin-bottom:26px;max-width:420px}
+.season .eyebrow{color:#e9b98a}
+
+/* Process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:st}
+.step{padding-top:24px;border-top:2px solid var(--line-d)}
+.step::before{counter-increment:st;content:"0" counter(st);font:800 15px/1 var(--display);color:var(--amber-2);display:block;margin-bottom:22px}
+.step h4{font-size:22px;font-weight:760;margin-bottom:10px}
+.step p{color:#b8bdc0;font-size:15px}
+
+/* Work */
+.work-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.work-side{display:grid;gap:16px}
+.ba{position:relative;border-radius:var(--r);overflow:hidden;min-height:440px;user-select:none}
+.ba .ph{position:absolute;inset:0;border-radius:0}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+.ba .bar::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+.ba .lbl{position:absolute;top:14px;font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.5);padding:8px 10px;border-radius:6px;pointer-events:none}
+.ba .lbl.l{left:14px}.ba .lbl.r{right:14px}
+.ba .ph figcaption{display:none}
+.ba-cap{margin-top:12px;font-size:14px;color:var(--mute)}
+
+/* Owner */
+.owner{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
+.owner .ph{min-height:460px}
+.owner blockquote{font:700 clamp(26px,3vw,36px)/1.25 var(--display);font-stretch:108%;letter-spacing:-.015em;margin:18px 0 26px}
+.owner p{color:var(--ink-2);font-size:16.5px;max-width:560px;margin-bottom:14px}
+.sig{font-weight:600;margin-top:22px}
+.sig small{display:block;color:var(--mute);font-weight:500}
+
+/* Reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev{background:rgba(255,255,255,.04);border:1px solid var(--line-d);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:16px}
+.rev .stars{color:var(--amber-2);letter-spacing:3px;font-size:15px}
+.rev q{font-size:16.5px;color:#e4e6e7;quotes:none}
+.rev .who{margin-top:auto;font-size:13.5px;color:#9aa0a3}
+.example-tag{display:inline-block;font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--amber-2);padding:7px 10px;border-radius:6px;margin-bottom:22px}
+
+/* FAQ */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 0;font:700 21px/1.3 var(--display);font-stretch:106%;display:flex;justify-content:space-between;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:500;color:var(--amber);font-size:26px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 24px;color:var(--ink-2);max-width:680px}
+
+/* Estimate */
+.est{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.est-side h2{font-size:clamp(34px,4.4vw,54px);font-weight:820;margin:14px 0 18px}
+.est-side p{color:#cbd6cf;margin-bottom:28px}
+.est-side ul{list-style:none;display:grid;gap:14px;font-size:15px;color:#dfe6e1}
+.est-side li{display:flex;gap:12px}
+.est-side li svg{flex:none;width:20px;height:20px;color:var(--amber-2);margin-top:2px}
+.card{background:var(--paper);color:var(--ink);border-radius:22px;padding:36px;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.prog{display:flex;gap:6px;margin-bottom:26px}
+.prog i{flex:1;height:4px;border-radius:4px;background:var(--line)}
+.prog i.on{background:var(--amber)}
+.stepq{font:780 24px/1.2 var(--display);margin-bottom:6px}
+.stepsub{color:var(--mute);font-size:14.5px;margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:block;padding:15px 16px;border-radius:12px;border:1.5px solid var(--line);font-weight:600;font-size:14.5px;background:#fff;transition:border-color .15s,background .15s}
+.opt input:checked + span{border-color:var(--amber);background:#fff7ec}
+.opt input:focus-visible + span{outline:3px solid var(--amber-2);outline-offset:2px}
+.field{display:grid;gap:7px;margin-bottom:14px}
+.field label{font-size:13px;font-weight:600;color:var(--ink-2)}
+.field input,.field select,.field textarea{font:15px var(--body);padding:14px 15px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--forest-2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.back{background:none;border:0;font:600 14.5px var(--body);color:var(--mute);cursor:pointer;padding:10px 0}
+.fstep{display:none}.fstep.on{display:block}
+.err{color:#a3361a;font-size:13.5px;margin-top:12px;min-height:18px}
+.done{display:none;text-align:center;padding:30px 10px}
+.done h3{font-size:30px;margin:12px 0 10px}
+.done p{color:var(--ink-2)}
+.done .check{width:56px;height:56px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;margin:0 auto;font-size:26px}
+
+/* Footer */
+footer{background:#0f1113;color:#9aa0a3;padding:64px 0 120px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot h5{font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#d9dcdd;margin-bottom:16px}
+.foot ul{list-style:none;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:#fff}
+.foot .brand-name{color:#f4f1ea}
+.fine{border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* Mobile sticky bar */
+.mbar{display:none}
+
+/* ===== Playbook view ===== */
+#playbook{display:none;background:var(--ink);color:var(--paper);min-height:100vh;padding:72px 0 140px}
+body.pb #site{display:none}
+body.pb #playbook{display:block}
+.pb-head h1{font-size:clamp(40px,5.4vw,68px);font-weight:850;margin:16px 0 18px}
+.pb-head p{color:#b8bdc0;font-size:18px;max-width:680px}
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:56px 0 72px}
+.funnel div{background:rgba(255,255,255,.04);border:1px solid var(--line-d);border-radius:12px;padding:20px 18px;position:relative}
+.funnel div b{display:block;font:780 18px/1.2 var(--display);margin-bottom:6px;color:#fff}
+.funnel div span{font-size:13.5px;color:#9aa0a3}
+.funnel div:not(:last-child)::after{content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--amber-2);font-weight:700;z-index:2}
+.phase{display:grid;grid-template-columns:220px 1fr;gap:40px;padding:40px 0;border-top:1px solid var(--line-d)}
+.phase .when{font:700 12px/1.5 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--amber-2)}
+.phase .when b{display:block;font:820 30px/1.1 var(--display);letter-spacing:-.02em;text-transform:none;color:#fff;margin-top:8px}
+.phase ul{list-style:none;display:grid;gap:12px}
+.phase li{display:grid;grid-template-columns:22px 1fr;gap:10px;color:#d4d7d8;font-size:15.5px}
+.phase li::before{content:"";width:12px;height:12px;border:2px solid var(--amber-2);border-radius:3px;margin-top:6px}
+.phase li em{font-style:normal;color:#8d9396;font-size:14px;display:block}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid var(--line-d);border-radius:12px;padding:20px}
+.kpi b{display:block;color:#fff;font:760 17px/1.2 var(--display);margin-bottom:6px}
+.kpi span{font-size:13.5px;color:#9aa0a3}
+.admock{margin-top:8px;display:grid;grid-template-columns:340px 1fr;gap:32px;align-items:start}
+.ad{background:var(--paper);color:var(--ink);border-radius:6px;padding:26px;border:3px solid var(--ink);outline:1px solid var(--paper)}
+.ad .k{font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.ad h4{font-size:30px;font-weight:850;margin:10px 0 10px}
+.ad p{font-size:14px;color:var(--ink-2);margin-bottom:16px}
+.ad .qr{display:flex;gap:14px;align-items:center;border-top:1px solid var(--line);padding-top:14px;font-size:13px}
+.ad .qr i{width:64px;height:64px;flex:none;background:
+  conic-gradient(from 90deg at 25% 25%,var(--ink) 25%,transparent 0) 0 0/16px 16px,
+  repeating-linear-gradient(90deg,var(--ink) 0 4px,transparent 4px 8px);border:4px solid var(--ink)}
+.flag{display:inline-block;font:600 12px/1 var(--body);color:var(--ink);background:var(--amber-2);border-radius:5px;padding:5px 7px;margin-left:6px;vertical-align:2px}
+
+/* Responsive */
+@media (max-width:980px){
+  .hero-grid,.owner,.est,.work-grid,.season,.admock{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr;gap:32px}
+  .rev-grid{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .funnel{grid-template-columns:1fr}
+  .funnel div:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-16px;transform:translateX(-50%)}
+  .phase{grid-template-columns:1fr;gap:18px}
+  .kpis{grid-template-columns:1fr}
+  .nav-links,.nav-phone{display:none}
+}
+@media (max-width:640px){
+  .svc-grid{grid-template-columns:1fr}
+  .collage{grid-template-rows:160px 160px}
+  .opts,.row2{grid-template-columns:1fr}
+  .season > div{padding:36px 26px}
+  .card{padding:26px}
+  section.s{padding:76px 0}
+  .hero-grid{padding:56px 24px 64px}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:250;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(21,24,27,.96);backdrop-filter:blur(10px)}
+  .mbar a{text-align:center;padding:14px 8px;border-radius:12px;font:600 14px/1 var(--body);text-decoration:none;color:var(--paper);background:rgba(255,255,255,.08)}
+  .mbar a.p{background:var(--amber);color:#fff}
+  .demo{bottom:84px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SITE VIEW ============ -->
+<div id="site">
+
+<div class="topbar">Winter openings for interior work. Spring 2027 exterior calendar is booking now <span class="cf">[confirm availability]</span> &nbsp;→&nbsp; <a href="#estimate">Get on the schedule</a></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand" aria-label="Bristol Builders home">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="8" fill="#1f3a2e"/><path d="M7 18 17 9l10 9" stroke="#e08a3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 16.5V25h13v-8.5" stroke="#f4f1ea" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 25v-5h4v5" stroke="#f4f1ea" stroke-width="2"/></svg>
+      <span class="brand-name">Bristol Builders<small>General Contractor · Vermont</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a><a href="#work">Our work</a><a href="#about">About</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-phone cf" href="#estimate">[phone number]</a>
+      <a class="btn btn-ink" href="#estimate" style="padding:13px 18px">Free estimate</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Bristol, Vermont · Addison County</div>
+      <h1>The contractor Addison County <span>calls back.</span></h1>
+      <p class="lede">Decks, siding, bathrooms, and the repairs that keep a Vermont house sound. One crew, one point of contact, and a written estimate before any work starts.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-amber" href="#estimate">Get a free estimate →</a>
+        <a class="btn btn-ghost" href="#estimate">Text us a photo of the job</a>
+      </div>
+      <div class="trust">
+        <span><svg viewBox="0 0 16 16" fill="none"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Locally owned in Bristol</span>
+        <span><svg viewBox="0 0 16 16" fill="none"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Written estimates</span>
+        <span class="cf"><svg viewBox="0 0 16 16" fill="none"><path d="m3 8.5 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>[Insured — confirm]</span>
+      </div>
+      <div class="note"><b>Why this headline:</b> the old site opened with "a small business trying to get a start." Buyers hire contractors on one fear: will this person show up and finish? The headline answers that fear. The H1 and eyebrow also carry "Bristol, Vermont" and "Addison County" for local search. Two CTAs: one for planners (form), one for people standing in front of the problem with a phone (photo).</div>
+    </div>
+    <div class="collage">
+      <figure class="ph"><figcaption>Photo needed · finished deck, wide shot</figcaption></figure>
+      <figure class="ph t2"><figcaption>Photo · siding detail</figcaption></figure>
+      <figure class="ph t3"><figcaption>Photo · Dakota on site</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="towns"><div class="wrap"><b>Working in</b>Bristol · Middlebury · Vergennes · Monkton · New Haven · Lincoln · Starksboro · Ferrisburgh · Weybridge · Cornwall</div></div>
+
+<!-- SERVICES -->
+<section class="s" id="services">
+  <div class="wrap">
+    <div class="s-head">
+      <div><div class="eyebrow">Services</div><h2>Built for houses that see real winters.</h2></div>
+      <p>Repairs and renovations, start to finish. Pick a service to start an estimate with it already filled in.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 14h24M5 14v11M25 14v11M3 19h24M9 9h12l4 5H5z"/></svg>
+        <h3>Decks &amp; porches</h3><p>New builds, rebuilds, and stair and railing fixes, framed to take a frost heave.</p>
+        <ul><li>New decks</li><li>Board &amp; rail replacement</li><li>Covered porches</li></ul>
+        <a class="go" href="#estimate" data-svc="Deck / porch">Estimate a deck →</a>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13 15 4l11 9v13H4z"/><path d="M4 17h22M4 21h22"/></svg>
+        <h3>Siding</h3><p>Install, replace, and repair, with the flashing and wrap done right underneath.</p>
+        <ul><li>Full re-side</li><li>Section repair</li><li>Trim &amp; fascia</li></ul>
+        <a class="go" href="#estimate" data-svc="Siding">Estimate siding →</a>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15h22v4a6 6 0 0 1-6 6h-10a6 6 0 0 1-6-6z"/><path d="M7 15V6a2 2 0 0 1 4 0"/></svg>
+        <h3>Bathroom renovations</h3><p>From a vanity swap to a full gut, with tile, fixtures, and finish work.</p>
+        <ul><li>Full remodels</li><li>Tub-to-shower</li><li>Tile &amp; vanity</li></ul>
+        <a class="go" href="#estimate" data-svc="Bathroom">Estimate a bathroom →</a>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 25V8l5-3v20M10 12h15v13H10"/><path d="m15 17 2 2 4-4"/></svg>
+        <h3>Rot repair</h3><p>Find it, cut it out, and rebuild the sills, trim, and framing before it spreads.</p>
+        <ul><li>Sills &amp; rim joists</li><li>Window trim</li><li>Deck framing</li></ul>
+        <a class="go" href="#estimate" data-svc="Rot repair">Estimate a repair →</a>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="4" width="18" height="22" rx="1"/><path d="M15 4v22M6 15h18"/></svg>
+        <h3>Windows &amp; doors</h3><p>Flashed, sealed, and trimmed so they close true and stop the draft.</p>
+        <ul><li>Replacement windows</li><li>Entry &amp; storm doors</li><li>Interior doors</li></ul>
+        <a class="go" href="#estimate" data-svc="Windows / doors">Estimate windows →</a>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="4" width="17" height="7" rx="1.5"/><path d="M22 7.5h3v6H14v4"/><rect x="12" y="17.5" width="4" height="9" rx="1"/></svg>
+        <h3>Painting &amp; drywall</h3><p>Patches, full rooms, and exteriors, prepped properly so the paint holds.</p>
+        <ul><li>Sheetrock repair</li><li>Interior painting</li><li>Exterior painting</li></ul>
+        <a class="go" href="#estimate" data-svc="Painting / drywall">Estimate painting →</a>
+      </article>
+    </div>
+    <div class="note"><b>Conversion detail:</b> each card's link opens the estimate form with that service already selected. That cuts one decision, and fewer decisions means more finished forms. <b>SEO next step:</b> each card becomes its own page (e.g. /decks-addison-county-vt). Pages for single services outrank one long services page.</div>
+  </div>
+</section>
+
+<!-- SEASON -->
+<section style="padding:0 0 104px">
+  <div class="wrap">
+    <div class="season">
+      <div class="now">
+        <div class="eyebrow">Now · November – February</div>
+        <h3>Winter is for inside.</h3>
+        <p>Bathrooms, sheetrock, painting, and interior doors. Get the indoor list done while the ground is frozen.</p>
+        <a class="btn btn-amber" href="#estimate" data-svc="Bathroom">Book interior work</a>
+      </div>
+      <div class="next">
+        <div class="eyebrow">Next · Spring 2027</div>
+        <h3>Get on the spring list.</h3>
+        <p>Decks, siding, and exterior rot repair. Estimates done this winter get scheduled first when the thaw comes.</p>
+        <a class="btn btn-ghost" href="#estimate" data-svc="Deck / porch">Reserve a spring estimate</a>
+      </div>
+    </div>
+    <div class="note"><b>Seasonal play:</b> contractors lose winter to slow demand. This band sells interior work now and moves spring demand into a winter estimate list, so there's a full calendar on day one of the thaw. Change the copy twice a year. Keep the urgency honest: say "scheduled first," not "only 3 slots left."</div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="s dark">
+  <div class="wrap">
+    <div class="s-head">
+      <div><div class="eyebrow">How it works</div><h2>No guessing what happens next.</h2></div>
+      <p>The biggest complaint about contractors is silence. Here's exactly what to expect.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h4>Send the details</h4><p>Fill out the form or text a photo. Two minutes.</p></div>
+      <div class="step"><h4>Site visit</h4><p>We come look, measure, and talk through options.</p></div>
+      <div class="step"><h4>Written estimate</h4><p>Scope, price, and start date on paper before work begins.</p></div>
+      <div class="step"><h4>Build &amp; walkthrough</h4><p>We finish, then walk the job with you before we call it done.</p></div>
+    </div>
+    <div class="note"><b>Objection handling:</b> spelling out the process answers "what am I getting into" before anyone has to ask. Each step is a promise. Dakota has to confirm these match how he actually works, or reword them until they do.</div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="s" id="work">
+  <div class="wrap">
+    <div class="s-head">
+      <div><div class="eyebrow">Recent work</div><h2>Drag to see the difference.</h2></div>
+      <p>Real jobs from around Addison County. Every project gets before and after photos.</p>
+    </div>
+    <div class="work-grid">
+      <div>
+        <div class="ba" id="ba">
+          <figure class="ph t4 before"></figure>
+          <figure class="ph after"></figure>
+          <div class="bar"></div>
+          <span class="lbl l">Before</span><span class="lbl r">After</span>
+          <input type="range" min="0" max="100" value="50" aria-label="Before and after comparison">
+        </div>
+        <div class="ba-cap cf">[Job name · town · e.g. "Deck rebuild, Monkton"]</div>
+      </div>
+      <div class="work-side">
+        <figure class="ph t2"><figcaption>Photo · bathroom remodel</figcaption></figure>
+        <figure class="ph t3"><figcaption>Photo · window install</figcaption></figure>
+      </div>
+    </div>
+    <div class="note"><b>The most important thing on this page is photos, and only Dakota has them.</b> Shot list for every job from now on: one wide "before" from a fixed spot, one wide "after" from the same spot, one close-up of the detail work. Phone camera is fine; landscape, daylight. The same photos feed the site, the Google profile, and Facebook.</div>
+  </div>
+</section>
+
+<!-- OWNER -->
+<section class="s" id="about" style="padding-top:0">
+  <div class="wrap owner">
+    <figure class="ph t3"><figcaption>Photo needed · Dakota, on a job, natural light</figcaption></figure>
+    <div>
+      <div class="eyebrow">Who you're hiring</div>
+      <blockquote>"If I say I'll be there Tuesday, I'm there Tuesday."</blockquote>
+      <p class="cf">[Dakota's story, 2–3 sentences: how long he's been building, why Bristol, what kind of work he's proudest of.]</p>
+      <p>When you call Bristol Builders, you're talking to the person who will be on your job. No call center and no salesperson handing you off.</p>
+      <div class="sig">Dakota <span class="cf">[last name]</span><small>Owner, Bristol Builders LLC</small></div>
+      <div class="note"><b>Why a face:</b> with a small contractor, people are hiring a person, not a brand. A real photo plus a plain promise builds more trust than any amount of polish. The quote is a sample of the voice. Dakota should say it in his own words, and it has to be true.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="s dark">
+  <div class="wrap">
+    <div class="s-head">
+      <div><div class="eyebrow">Reviews</div><h2>What neighbors say.</h2></div>
+      <p>Pulled live from our Google profile.</p>
+    </div>
+    <span class="example-tag">Layout example · not real reviews</span>
+    <div class="rev-grid">
+      <div class="rev"><div class="stars">★★★★★</div><q>[Real Google review text appears here once posted.]</q><div class="who">Customer name · Town</div></div>
+      <div class="rev"><div class="stars">★★★★★</div><q>[Real Google review text appears here once posted.]</q><div class="who">Customer name · Town</div></div>
+      <div class="rev"><div class="stars">★★★★★</div><q>[Real Google review text appears here once posted.]</q><div class="who">Customer name · Town</div></div>
+    </div>
+    <div class="note"><b>Rule:</b> this section stays hidden on the live site until there are at least 3 real Google reviews. An empty review section is worse than none. Never write or paraphrase reviews. Show real ones, word for word, with the customer's OK. Review collection is the #1 item in the playbook (button below).</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s" id="faq">
+  <div class="wrap">
+    <div class="s-head"><div><div class="eyebrow">Questions</div><h2>Before you call.</h2></div></div>
+    <div class="faq">
+      <details open><summary>Do you take small jobs?</summary><p class="cf">[Confirm: smallest job Dakota will take, e.g. a rotted step or a single window.]</p></details>
+      <details><summary>Are estimates really free?</summary><p class="cf">[Confirm: free in-person estimate within what radius?]</p></details>
+      <details><summary>How far do you travel?</summary><p>We're based in Bristol and work throughout Addison County. If you're just outside it, ask. <span class="cf">[Confirm radius.]</span></p></details>
+      <details><summary>Are you insured?</summary><p class="cf">[Confirm coverage. Only say what can be shown on request.]</p></details>
+      <details><summary>How soon can you start?</summary><p class="cf">[Confirm current lead time.]</p></details>
+    </div>
+    <div class="note"><b>Double duty:</b> FAQs answer objections and match how people phrase searches ("does anyone do small repair jobs near Bristol VT"). Every answer here needs Dakota's real answer; none can be guessed.</div>
+  </div>
+</section>
+
+<!-- ESTIMATE -->
+<section class="s forest" id="estimate">
+  <div class="wrap est">
+    <div class="est-side">
+      <div class="eyebrow" style="color:#e9b98a">Free estimate</div>
+      <h2>Tell us about the job.</h2>
+      <p>Three short steps. A real person reads every request.</p>
+      <ul>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Written estimate before anything starts</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Reply within <span class="cf">[1 business day — confirm]</span></span></li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Photos help us price it faster</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="m4 10.5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Your info is only used for your project</li>
+      </ul>
+      <div class="note"><b>Why multi-step:</b> step 1 is one tap (project type), the easiest possible start. People who start a form tend to finish it. Contact details come last, after they've already invested in it. Each step can be tracked, so drop-off shows up in analytics.</div>
+    </div>
+    <div class="card">
+      <form id="f" novalidate>
+        <div class="prog"><i class="on"></i><i></i><i></i></div>
+
+        <div class="fstep on" data-step="0">
+          <div class="stepq">What's the project?</div>
+          <div class="stepsub">Pick the closest one.</div>
+          <div class="opts" id="svcOpts">
+            <label class="opt"><input type="radio" name="svc" value="Deck / porch" required><span>Deck / porch</span></label>
+            <label class="opt"><input type="radio" name="svc" value="Siding"><span>Siding</span></label>
+            <label class="opt"><input type="radio" name="svc" value="Bathroom"><span>Bathroom</span></label>
+            <label class="opt"><input type="radio" name="svc" value="Rot repair"><span>Rot repair</span></label>
+            <label class="opt"><input type="radio" name="svc" value="Windows / doors"><span>Windows / doors</span></label>
+            <label class="opt"><input type="radio" name="svc" value="Painting / drywall"><span>Painting / drywall</span></label>
+            <label class="opt" style="grid-column:1/-1"><input type="radio" name="svc" value="Other"><span>Something else / not sure</span></label>
+          </div>
+        </div>
+
+        <div class="fstep" data-step="1">
+          <div class="stepq">Where and when?</div>
+          <div class="stepsub">Rough is fine.</div>
+          <div class="field"><label for="town">Town</label><input id="town" name="town" placeholder="e.g. Bristol" required></div>
+          <div class="field"><label for="when">Timeline</label>
+            <select id="when" name="when" required><option value="">Choose one</option><option>As soon as possible</option><option>Within 1–3 months</option><option>Spring 2027</option><option>Just pricing it out</option></select></div>
+          <div class="field"><label for="desc">What's going on?</label><textarea id="desc" name="desc" rows="3" placeholder="Size, condition, anything we should know."></textarea></div>
+          <div class="field"><label for="pics">Photos (optional)</label><input id="pics" name="pics" type="file" accept="image/*" multiple></div>
+        </div>
+
+        <div class="fstep" data-step="2">
+          <div class="stepq">How do we reach you?</div>
+          <div class="stepsub">Last step.</div>
+          <div class="row2">
+            <div class="field"><label for="nm">Name</label><input id="nm" name="nm" autocomplete="name" required></div>
+            <div class="field"><label for="ph">Phone</label><input id="ph" name="ph" type="tel" autocomplete="tel"></div>
+          </div>
+          <div class="field"><label for="em">Email</label><input id="em" name="em" type="email" autocomplete="email" required></div>
+          <div class="field"><label>Best way to reach you</label>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="pref" value="Text" checked><span>Text</span></label>
+              <label class="opt"><input type="radio" name="pref" value="Call"><span>Call</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="err" id="err" role="alert"></div>
+        <div class="form-nav">
+          <button type="button" class="back" id="back" style="visibility:hidden">← Back</button>
+          <button type="submit" class="btn btn-amber" id="next">Continue →</button>
+        </div>
+      </form>
+      <div class="done" id="done">
+        <div class="check">✓</div>
+        <h3>Request received.</h3>
+        <p>Demo only. Nothing was sent. On the live site this goes straight to Dakota's inbox and phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <span class="brand-name">Bristol Builders LLC</span>
+        <p style="margin-top:14px;max-width:300px">General contractor based in Bristol, Vermont, serving Addison County.</p>
+        <p class="cf" style="margin-top:14px">[Phone · email: must match the Google profile exactly]</p>
+      </div>
+      <div><h5>Services</h5><ul><li><a href="#services">Decks &amp; porches</a></li><li><a href="#services">Siding</a></li><li><a href="#services">Bathrooms</a></li><li><a href="#services">Rot repair</a></li></ul></div>
+      <div><h5>Areas</h5><ul><li>Bristol</li><li>Middlebury</li><li>Vergennes</li><li>Monkton</li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#work">Our work</a></li><li><a href="#faq">FAQ</a></li><li><a href="#estimate">Free estimate</a></li></ul></div>
+    </div>
+    <div class="fine"><span>© <span id="yr"></span> Bristol Builders LLC · Bristol, VT</span><span>Mockup prepared for review. Not the live site.</span></div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a href="#estimate" class="cf">Call</a>
+  <a href="#estimate">Text</a>
+  <a href="#estimate" class="p">Free estimate</a>
+</div>
+</div>
+
+<!-- ============ PLAYBOOK VIEW ============ -->
+<div id="playbook">
+  <div class="wrap">
+    <div class="pb-head">
+      <div class="eyebrow">Marketing playbook · Bristol Builders</div>
+      <h1>Website is one piece. This is the whole machine.</h1>
+      <p>Most local contractor leads start on Google Maps, not the website. The site's job is to close the visitor the Google profile sends over. The plan below is in order, with no paid platforms needed to start.</p>
+    </div>
+
+    <div class="funnel">
+      <div><b>Found</b><span>Google Maps, search, Facebook, the paper</span></div>
+      <div><b>Trusted</b><span>Reviews, photos, a real face</span></div>
+      <div><b>Contacted</b><span>Form, call, or text, in under 2 minutes</span></div>
+      <div><b>Hired</b><span>Fast reply, written estimate</span></div>
+      <div><b>Referred</b><span>Review request, before/after photos</span></div>
+    </div>
+
+    <div class="phase">
+      <div class="when">Weeks 1–2<b>Foundation</b></div>
+      <ul>
+        <li><span>Google Business Profile: primary category → General contractor; add each service as a secondary category or service entry<em>Currently "Remodeler," which hides him from "general contractor" searches</em></span></li>
+        <li><span>Fix the map pin and set a service area (towns) instead of a pin-only listing<em>The current pin appears to sit near Bethel, not Bristol</em></span></li>
+        <li><span>Upload 10+ real job photos and write the profile description from the site's hero copy</span></li>
+        <li><span>Make name, phone, and email identical on the site, Google, and Facebook<em>Mismatched contact info weakens local ranking</em></span></li>
+        <li><span>Launch the rebuilt site; tag the Google profile's website link with <code>?utm_source=google&amp;utm_medium=gbp</code> so its traffic is countable</span></li>
+        <li><span>Turn on analytics with a conversion event for form submits and phone taps<span class="flag">confirm what ZenBusiness supports</span></span></li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="when">Ongoing<b>Review engine</b></div>
+      <ul>
+        <li><span>Every finished job: text the customer the Google review link within 48 hours<em>Get the short link from the profile's "Ask for reviews" button</em></span></li>
+        <li><span>Sample text: "Thanks for having us out. If you were happy with the work, a quick Google review helps a small local business more than you'd think: [link]. Dakota"</span></li>
+        <li><span>Reply to every review, good or bad, within a few days</span></li>
+        <li><span>First target: pass New Roots (8 reviews). Then Scratch Builders (24).<em>Counts from the Maps screenshot, Nov 11</em></span></li>
+        <li><span>Start with past customers. A few direct asks gets the first reviews in this month.</span></li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="when">Monthly<b>Local content</b></div>
+      <ul>
+        <li><span>One Google profile post per finished job: before/after photo, town, job type<em>Posts plus fresh photos signal an active business</em></span></li>
+        <li><span>Turn each service card into its own page; then add town pages for the 3–5 towns with the most jobs</span></li>
+        <li><span>Mirror the same before/after posts to the existing Facebook page</span></li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="when">Late Feb – Mar<b>Spring ad</b></div>
+      <div>
+        <ul style="margin-bottom:28px">
+          <li><span>One Addison Independent ad, timed for when people start planning spring projects<span class="flag">get rates &amp; deadlines from the paper directly</span></span></li>
+          <li><span>Send ad readers to a dedicated page (<code>/spring</code>) via QR code, so print leads are measurable and not guesses</span></li>
+          <li><span>The ad mirrors the site: same headline, same photo, same CTA</span></li>
+        </ul>
+        <div class="admock">
+          <div class="ad">
+            <div class="k">Bristol Builders LLC</div>
+            <h4>Get on the spring list.</h4>
+            <p>Decks · Siding · Rot repair · Bathrooms. Written estimates done this winter get scheduled first.</p>
+            <div class="qr"><i></i><span><b>Scan for a free estimate</b><br>bristolbuildersvt.com/spring<br><span class="cf">[phone]</span></span></div>
+          </div>
+          <p style="color:#9aa0a3;font-size:14.5px;max-width:380px">Ad mock, size TBD. One message, one photo, one action. Print ads that try to list everything get skimmed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="when">When ready<b>Efficiency Vermont</b></div>
+      <ul>
+        <li><span>Apply to the Efficiency Excellence Network, Efficiency Vermont's contractor network<span class="flag">verify eligibility &amp; requirements on their site</span><em>Network membership can bring referrals for efficiency-related work like windows, doors, and envelope repair</em></span></li>
+        <li><span>Once accepted: add the badge to the site footer and Google profile</span></li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="when">Every month<b>Measure</b></div>
+      <div class="kpis">
+        <div class="kpi"><b>Leads by source</b><span>Google profile, site, Facebook, ad (/spring), referral. Ask every caller "how'd you find us?"</span></div>
+        <div class="kpi"><b>Google profile actions</b><span>Calls, website clicks, and direction requests from the profile's Performance tab</span></div>
+        <div class="kpi"><b>Review count</b><span>Against the two nearest competitors</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Demo controls -->
+<div class="demo" role="toolbar" aria-label="Demo controls">
+  <a href="index.html" style="color:#e08a3a">← Your guide</a>
+  <a href="#site" id="vSite" class="on">Site</a>
+  <a href="#playbook" id="vPb">Playbook</a>
+  <button id="tNotes" aria-pressed="false">Strategy notes: off</button>
+</div>
+
+<script>
+(function(){
+  // View routing
+  function route(){
+    var pb = location.hash === '#playbook';
+    document.body.classList.toggle('pb', pb);
+    document.getElementById('vPb').classList.toggle('on', pb);
+    document.getElementById('vSite').classList.toggle('on', !pb);
+    if (pb || location.hash === '#site') window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', route); route();
+
+  // Strategy notes toggle
+  var t = document.getElementById('tNotes');
+  t.addEventListener('click', function(){
+    var on = document.body.classList.toggle('notes');
+    t.textContent = 'Strategy notes: ' + (on ? 'on' : 'off');
+    t.setAttribute('aria-pressed', on);
+    t.classList.toggle('on', on);
+  });
+
+  // Before / after
+  var ba = document.getElementById('ba'), r = ba.querySelector('input');
+  r.addEventListener('input', function(){ ba.style.setProperty('--pos', r.value + '%'); });
+
+  // Service links preselect form
+  document.querySelectorAll('[data-svc]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var v = a.getAttribute('data-svc');
+      var radio = document.querySelector('#svcOpts input[value="' + v + '"]');
+      if (radio) { radio.checked = true; go(0); }
+    });
+  });
+
+  // Multi-step form
+  var f = document.getElementById('f'), steps = f.querySelectorAll('.fstep'),
+      bars = f.querySelectorAll('.prog i'), back = document.getElementById('back'),
+      next = document.getElementById('next'), err = document.getElementById('err'), cur = 0;
+  function go(i){
+    cur = i;
+    steps.forEach(function(s,k){ s.classList.toggle('on', k === i); });
+    bars.forEach(function(b,k){ b.classList.toggle('on', k <= i); });
+    back.style.visibility = i ? 'visible' : 'hidden';
+    next.textContent = i === steps.length - 1 ? 'Send request →' : 'Continue →';
+    err.textContent = '';
+  }
+  function valid(){
+    var s = steps[cur], ok = true;
+    s.querySelectorAll('[required]').forEach(function(el){
+      if (el.type === 'radio') {
+        if (!s.querySelector('input[name="' + el.name + '"]:checked')) ok = false;
+      } else if (!el.checkValidity()) ok = false;
+    });
+    return ok;
+  }
+  back.addEventListener('click', function(){ if (cur) go(cur - 1); });
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!valid()) { err.textContent = 'Please fill in the highlighted step to continue.'; return; }
+    if (cur < steps.length - 1) { go(cur + 1); return; }
+    f.style.display = 'none';
+    document.getElementById('done').style.display = 'block';
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
