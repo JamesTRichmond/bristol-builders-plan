@@ -41,6 +41,9 @@ section{padding:36px 0 8px}
 
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden}
 .card.helper{border:2px solid var(--amber)}
+.card.urgent{border:2px solid #b4432c}
+.card.urgent .num{background:#b4432c}
+.card.urgent .num span{font-size:20px}
 .card summary{list-style:none;cursor:pointer;padding:20px 20px;display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center}
 .card summary::-webkit-details-marker{display:none}
 .num{width:36px;height:36px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font:800 16px/1 var(--display)}
@@ -91,7 +94,7 @@ footer{padding:40px 0 60px;color:var(--mute);font-size:14px;text-align:center}
   </div>
 </div>
 
-<div class="progress"><div class="wrap"><span id="pText">0 of 8 done</span><div class="bar"><i id="pBar"></i></div></div></div>
+<div class="progress"><div class="wrap"><span id="pText">0 of 9 done</span><div class="bar"><i id="pBar"></i></div></div></div>
 
 <div class="wrap">
 
@@ -126,6 +129,7 @@ HOW TO HELP ME
 - Each session should take about 10–15 minutes. When we finish a job, tell me it's a good stopping point.
 
 THE PLAN (jobs in order)
+FIRST, BEFORE ANYTHING ELSE: My website bristolbuildersvt.com currently shows a "Not Secure" warning in the browser because it has no SSL certificate and doesn't forward http to https. I need to call ZenBusiness at (844) 493-6249 and have them turn that on. Coach me through that call and check the site with me afterward. If ZenBusiness says it costs extra, help me find out what my current plan already includes before I agree to pay anything.
 1. Look at the new website preview my friend made, and note anything that isn't right about me.
 2. Make sure I can edit my Google Business Profile (search "Bristol Builders" on Google while signed in to my business Google account, and look for the "Edit profile" option).
 3. Change my primary Google business category from "Remodeler" to "General contractor."
@@ -174,6 +178,26 @@ Remove the old line that says I'm "a small business trying to get a start."</div
 
 <section>
   <div class="label">The jobs</div>
+
+  <details class="card urgent" data-job="s">
+    <summary><div class="num"><span>!</span></div><div><h3>Fix the "Not Secure" warning on your website</h3><div class="meta">About 10 minutes · one phone call</div></div><div class="chev">›</div></summary>
+    <div class="body">
+      <p class="why">Right now, when somebody opens bristolbuildersvt.com, their browser puts a <b>Not Secure</b> warning right next to your name. Some people close the tab when they see it. Google also pushes sites with that warning further down the list. This is the single fastest thing on here that gets you calls back.</p>
+      <div class="need"><b>Good news:</b> you didn't break anything. It's a setting on ZenBusiness's end. They turn it on for you.</div>
+      <ol class="steps">
+        <li>Call ZenBusiness at <b>(844) 493-6249</b>. Monday to Friday, 9am to 9pm our time.</li>
+        <li>Tell them what's wrong. Here's the whole thing you need to say:</li>
+      </ol>
+      <div class="copybox" id="ssl">My website is bristolbuildersvt.com and it shows "Not Secure" in the browser. I need the SSL certificate turned on for it, and http forwarded to https. Can you get that set up?</div>
+      <button class="btn btn-line" data-copy="ssl">Copy what to say</button>
+      <ol class="steps" start="3" style="margin-top:18px">
+        <li>If they tell you it costs extra, ask what's already included in the plan you pay for before you agree to anything.</li>
+        <li>Give it a day. Then open <b>bristolbuildersvt.com</b> on your phone. The "Not Secure" should be gone and you'll see a padlock instead.</li>
+      </ol>
+      <p class="tip">Still showing after two days? Tell your AI helper and it'll figure out the next move with you.</p>
+      <label class="donebtn"><input type="checkbox" data-done="s"> Done: no more warning</label>
+    </div>
+  </details>
 
   <details class="card" data-job="1">
     <summary><div class="num"><span>1</span></div><div><h3>Look at your new website preview</h3><div class="meta">About 5 minutes</div></div><div class="chev">›</div></summary>
@@ -320,7 +344,7 @@ Remove the old line that says I'm "a small business trying to get a start."</div
 
 <script>
 (function(){
-  var KEY='bb-guide-done', TOTAL=8, state={};
+  var KEY='bb-guide-done', TOTAL=9, state={};
   try{ state=JSON.parse(localStorage.getItem(KEY)||'{}') }catch(e){}
   function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)) }catch(e){} }
   function paint(){
